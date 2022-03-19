@@ -3,10 +3,12 @@ import { IAnimal } from "../models/IAnimal";
 import { AnimalList } from "../models/AnimalList";
 import './Animals.css';
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, useParams} from "react-router-dom";
 
 export function Animals(){
     const [animals, setAnimals] = useState<AnimalList[]>([]);
+    //get a ID
+    const {id} = useParams();
 
     const getData = ()=>{
         axios
@@ -25,10 +27,10 @@ export function Animals(){
     const ListItems = ()=>{
         const items = animals.map((item:IAnimal)=>
         <>
-        <div style={{backgroundColor:'green'}}>
-        <Link to='/AnimalDetail'>
+        <div style={{backgroundColor:'#cee4b4'}}>
+        <Link to={`AnimalDetail/id`}>
         <p className="container-name" key={item.id}>{item.name}</p>
-        <p className="container-img"><img src={item.imageUrl} width="80px" height='60px'/></p>
+        <p className="container-img"><img src={item.imageUrl} width="120px" height='80px'/></p>
         </Link>
         </div>
         </>);
@@ -41,6 +43,7 @@ export function Animals(){
         <Fragment>
             <h1>🐘WELCOME TO ZOO!?🐼</h1>
             <h2>We have {animals.length} animals!</h2>
+            <h3>ユーザーID: {id}</h3>
             <div className="container">
             {ListItems()}
             </div>           

@@ -14,6 +14,7 @@ ReactDOM.render(
         <Route path='/' element={<App/>} ></Route>
         <Route path='/AnimalDetail' element={<AnimalDetail/>} ></Route>
         <Route path='*' element={<NotFound/>} ></Route>
+        <Route path="/AnimalDetail/:id" element={<AnimalDetail/>}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

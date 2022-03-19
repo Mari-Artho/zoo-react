@@ -1,12 +1,24 @@
 .container{
-    color:green;
     list-style: none;
-    background-color: red;
-    width: 350px;
+    text-decoration: none;
+    background-color: #7d9263;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    margin: 30px;
     }
 
+.container-name{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: orangered;
+}
+
+Link:container-name{
+    text-decoration-line: red;
+}
+
 h1{
-    color: #0b9d0ba1;
+    color: #7d9263;
 }
