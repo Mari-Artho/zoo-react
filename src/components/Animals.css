@@ -1,0 +1,12 @@
+.container{
+    color:green;
+    list-style: none;
+    background-color: red;
+    width: 350px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    }
+
+h1{
+    color: #0b9d0ba1;
+}
