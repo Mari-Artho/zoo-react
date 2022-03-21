@@ -1,13 +1,8 @@
 import { Fragment, useEffect } from "react";
 import { useParams } from "react-router-dom";
-//from quita
 import { useState } from "react";
-
-//fetch
 import axios from "axios";
-import { IAnimal } from "../models/IAnimal";
 import { AnimalList } from "../models/AnimalList";
-import { isTemplateExpression } from "typescript";
 
 const AnimalDetail = () =>{
     const { id } = useParams();
