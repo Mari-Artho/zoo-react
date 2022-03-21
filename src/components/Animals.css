@@ -11,12 +11,11 @@
 .container-name{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 1.5rem;
-    text-decoration: none;
-    color: orangered;
+    color: rgb(2, 58, 7);
 }
 
-Link:container-name{
-    text-decoration-line: red;
+a{
+    text-decoration: none;
 }
 
 h1{

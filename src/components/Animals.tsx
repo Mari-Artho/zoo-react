@@ -28,7 +28,7 @@ export function Animals(){
         const items = animals.map((item:IAnimal)=>
         <>
         <div style={{backgroundColor:'#cee4b4'}}>
-        <Link to={`AnimalDetail/id`}>
+        <Link to={`AnimalDetail/${item.id}`}>
         <p className="container-name" key={item.id}>{item.name}</p>
         <p className="container-img"><img src={item.imageUrl} width="120px" height='80px'/></p>
         </Link>
@@ -41,9 +41,8 @@ export function Animals(){
 
     return (
         <Fragment>
-            <h1>🐘WELCOME TO ZOO!?🐼</h1>
+            <h1>🐘WELCOME TO ZOO!?🐻</h1>
             <h2>We have {animals.length} animals!</h2>
-            <h3>ユーザーID: {id}</h3>
             <div className="container">
             {ListItems()}
             </div>           

@@ -4,15 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AnimalDetail } from './components/AnimalDetail';
 import { NotFound } from './components/NotFound';
+import AnimalDetail from './components/AnimalDetail';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App/>} ></Route>
-        <Route path='/AnimalDetail' element={<AnimalDetail/>} ></Route>
         <Route path='*' element={<NotFound/>} ></Route>
         <Route path="/AnimalDetail/:id" element={<AnimalDetail/>}></Route>
       </Routes>
