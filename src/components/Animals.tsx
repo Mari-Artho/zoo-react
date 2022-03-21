@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Link, useParams} from "react-router-dom
 
 export function Animals(){
     const [animals, setAnimals] = useState<AnimalList[]>([]);
-    //get a ID
+    //Set a ID
     const {id} = useParams();
 
     const getData = ()=>{
@@ -20,7 +20,6 @@ export function Animals(){
         });
     }//getDataの最後
 
-    console.log(animals);
     //useEffect
     useEffect(getData, []);
 
