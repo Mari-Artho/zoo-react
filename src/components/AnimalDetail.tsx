@@ -2,7 +2,7 @@ import { Fragment, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { AnimalList } from "../models/AnimalList";
+import { Animal } from "../models/Animal";
 
 const AnimalDetail = () =>{
     const { id } = useParams();
@@ -10,17 +10,21 @@ const AnimalDetail = () =>{
     const idFromApi = 'http://localhost:3000/AnimalDetail/' + id;
 
     //fetch data
-    const [data, setData] = useState<AnimalList[]>([]);
+    const [data, setData] = useState<Animal[]>([]);
 
     useEffect(()=>{
     const fetchData = async()=>{
         const result = await axios(
-        'https://animals.azurewebsites.net/api/animals?id=' + id
+        'https://animals.azurewebsites.net/api/animals'
         );
         setData(result.data);
     }; 
     fetchData();
 }, []);
+
+    //filter
+    //const animalID = data.filter((animal) => animal.id == id);
+
 
 return(
     <Fragment>
@@ -40,9 +44,6 @@ return(
                 </li>
             ))}
         </ul>
-
-        
-    
     </Fragment>
 );
 }

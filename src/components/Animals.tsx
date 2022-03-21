@@ -1,12 +1,12 @@
 import { Fragment, useEffect, useState } from "react";
 import { IAnimal } from "../models/IAnimal";
-import { AnimalList } from "../models/AnimalList";
+import { Animal } from "../models/Animal";
 import './Animals.css';
 import axios from "axios";
 import { BrowserRouter as Router, Route, Link, useParams} from "react-router-dom";
 
 export function Animals(){
-    const [animals, setAnimals] = useState<AnimalList[]>([]);
+    const [animals, setAnimals] = useState<Animal[]>([]);
     //Set a ID
     const {id} = useParams();
 
@@ -15,7 +15,7 @@ export function Animals(){
         .get<IAnimal[]>('https://animals.azurewebsites.net/api/animals')
         .then((response)=>{
             let animalsFromApi = response.data.map((animal:IAnimal)=>{
-                return new AnimalList (animal.id, animal.name, animal.latinName, animal.yearOfBirth, animal.shortDescription, animal.longDescription, animal.imageUrl, animal.medicine, animal.isFed, animal.lastFed);
+                return new Animal (animal.id, animal.name, animal.latinName, animal.yearOfBirth, animal.shortDescription, animal.longDescription, animal.imageUrl, animal.medicine, animal.isFed, animal.lastFed);
             }); setAnimals(animalsFromApi);
         });
     }//getDataの最後

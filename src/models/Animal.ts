@@ -1,4 +1,4 @@
-export class AnimalList{
+export class Animal{
 
     constructor(
         public id:number,
