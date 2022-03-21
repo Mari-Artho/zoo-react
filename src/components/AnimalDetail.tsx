@@ -6,12 +6,9 @@ import { Animal } from "../models/Animal";
 
 const AnimalDetail = () =>{
     const { id } = useParams();
-    const url = 'https://animals.azurewebsites.net/api/animals/' + id;
-    const idFromApi = 'http://localhost:3000/AnimalDetail/' + id;
 
     //fetch data
     const [data, setData] = useState<Animal[]>([]);
-
     useEffect(()=>{
     const fetchData = async()=>{
         const result = await axios(
@@ -22,15 +19,34 @@ const AnimalDetail = () =>{
     fetchData();
 }, []);
 
-    //filter
-    //const animalID = data.filter((animal) => animal.id == id);
+//filter2
+//parseInt is convert a string integer to a numeric integer
+//(id!) tells TypeScript that even though something looks like it could be null, it can trust you that it's not.
+const res = data.filter(animalId => {
+    return animalId.id == parseInt(id!);
+  });
 
-
+//I got an error, so I added this '{res.toString()}' to solve it.
 return(
     <Fragment>
-        <h2>Animal detail - {id} </h2>
-        <h3>{idFromApi}</h3>
+        <h2>Animal ID:  {id} </h2>
+        
         <ul>
+            {res.map(item=>(
+                <li key={item.id}>
+                    <p>{item.name}</p>
+                    <img src={item.imageUrl} width="140px" height='100px' />
+                    <p>Year of birth: {item.yearOfBirth}</p>
+                    <p>Short description: {item.shortDescription}</p>
+                    <p>Long description: {item.longDescription}</p>
+                    <p>Medicine: {item.medicine}</p>
+                    <p>Hungry: {item.isFed}</p>
+                    <p>Lastfed: {item.lastFed}</p>
+                </li>
+            ))}
+        </ul>
+       
+        {/* <ul>
             {data.map(item=>(
                 <li key={item.id}>
                     <a href={item.imageUrl}>{item.name}</a>
@@ -43,7 +59,7 @@ return(
                     <p>Lastfed: {item.lastFed}</p>
                 </li>
             ))}
-        </ul>
+        </ul> */}
     </Fragment>
 );
 }
