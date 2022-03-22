@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Animal } from "../models/Animal";
 import './AnimalDetail.css';
+import {useRef} from 'react';
 
 const AnimalDetail = () =>{
     const { id } = useParams();
@@ -28,22 +29,22 @@ const res = data.filter(animalId => {
   });
 
   //toggle button
-  const [ isFed, setIsFed] = useState('Hungry');
+  const [ isFed, setIsFed] = useState(" I'm hungry!!");
   const toggleBtn = () => {
       const hungry:boolean = false;
       const fed = hungry == false ? 'He is full': 'He is hungry';
-      console.log(fed);
-
       setIsFed("I'm full!!");
-      
     };
+  
+  //disable button
+  const [once, setOnce] = useState(false);
 
 //I got an error, so I added this '{res.toString()}' to solve it.
 return(
     <Fragment>
         <h2>Animal ID:  {id} </h2>
-        <button onClick={toggleBtn}>{isFed}</button>
-      
+        <button onClick={toggleBtn} disabled={once} >{isFed}</button>
+
         <ul>
             {res.map(item=>(
                 <li key={item.id}>
