@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { Animal } from "../models/Animal";
+import './AnimalDetail.css';
 
 const AnimalDetail = () =>{
     const { id } = useParams();
@@ -26,18 +27,29 @@ const res = data.filter(animalId => {
     return animalId.id == parseInt(id!);
   });
 
+  //toggle button
+  const [ isFed, setIsFed] = useState('Hungry');
+  const toggleBtn = () => {
+      const hungry:boolean = false;
+      const fed = hungry == false ? 'He is full': 'He is hungry';
+      console.log(fed);
+
+      setIsFed("I'm full!!");
+      
+    };
+
 //I got an error, so I added this '{res.toString()}' to solve it.
 return(
     <Fragment>
         <h2>Animal ID:  {id} </h2>
-        
+        <button onClick={toggleBtn}>{isFed}</button>
+      
         <ul>
             {res.map(item=>(
                 <li key={item.id}>
-                    <p>{item.name}</p>
+                    <h1>Name: {item.name}</h1>
                     <img src={item.imageUrl} width="140px" height='100px' />
                     <p>Year of birth: {item.yearOfBirth}</p>
-                    <p>Short description: {item.shortDescription}</p>
                     <p>Long description: {item.longDescription}</p>
                     <p>Medicine: {item.medicine}</p>
                     <p>Hungry: {item.isFed}</p>
@@ -45,21 +57,7 @@ return(
                 </li>
             ))}
         </ul>
-       
-        {/* <ul>
-            {data.map(item=>(
-                <li key={item.id}>
-                    <a href={item.imageUrl}>{item.name}</a>
-                    <p>ID: {item.id}</p>
-                    <p>Year of birth: {item.yearOfBirth}</p>
-                    <p>Short description: {item.shortDescription}</p>
-                    <p>Long description: {item.longDescription}</p>
-                    <p>Medicine: {item.medicine}</p>
-                    <p>Hungry: {item.isFed}</p>
-                    <p>Lastfed: {item.lastFed}</p>
-                </li>
-            ))}
-        </ul> */}
+        
     </Fragment>
 );
 }

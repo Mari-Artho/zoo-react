@@ -30,6 +30,7 @@ export function Animals(){
         <Link to={`AnimalDetail/${item.id}`}>
         <p className="container-name" key={item.id}>{item.name}</p>
         <p className="container-img"><img src={item.imageUrl} width="120px" height='80px'/></p>
+        <p className="container-short">{item.shortDescription}</p>
         </Link>
         </div>
         </>);
