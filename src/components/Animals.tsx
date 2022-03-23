@@ -15,10 +15,20 @@ export function Animals(){
         .get<IAnimal[]>('https://animals.azurewebsites.net/api/animals')
         .then((response)=>{
             let animalsFromApi = response.data.map((animal:IAnimal)=>{
-                return new Animal (animal.id, animal.name, animal.latinName, animal.yearOfBirth, animal.shortDescription, animal.longDescription, animal.imageUrl, animal.medicine, animal.isFed, animal.lastFed);
+                return new Animal (
+                    animal.id,
+                    animal.name,
+                    animal.latinName,
+                    animal.yearOfBirth,
+                    animal.shortDescription,
+                    animal.longDescription,
+                    animal.imageUrl, 
+                    animal.medicine, 
+                    animal.isFed, 
+                    animal.lastFed);
             }); setAnimals(animalsFromApi);
         });
-    }//getDataの最後
+    }//getData end
 
     //useEffect
     useEffect(getData, []);
