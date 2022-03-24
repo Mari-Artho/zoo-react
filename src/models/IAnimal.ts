@@ -9,5 +9,5 @@ export interface IAnimal{
     imageUrl:string;
     medicine:string;
     isFed:boolean;
-    lastFed:string;
+    lastFed:Date;
 }

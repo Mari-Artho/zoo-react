@@ -5,21 +5,34 @@ import axios from "axios";
 import { Animal } from "../models/Animal";
 import './AnimalDetail.css';
 import { Link } from "react-router-dom";
+import { setDefaultResultOrder } from "dns";
 
 const AnimalDetail = () =>{
     const { id } = useParams();
+    const [ animalId, setAnimalId] = useState(0);
 
     //fetch data
     const [data, setData] = useState<Animal[]>([]);
+    //localstorage
+    let getData = localStorage.getItem('data');
+
     useEffect(()=>{
     const fetchData = async()=>{
         const result = await axios(
         'https://animals.azurewebsites.net/api/animals'
         );
         setData(result.data);
+        localStorage.setItem('data', JSON.stringify(result));
     }; 
     fetchData();
 }, []); //AnimalDetail last
+
+//setId & useeffect
+const setId =()=>{
+    if(id)
+    setAnimalId(+id);
+};
+useEffect(setId, []);
 
 //filter by id
 //parseInt is convert a string integer to a numeric integer
@@ -27,39 +40,53 @@ const AnimalDetail = () =>{
 const res = data.filter(animalId => {
     return animalId.id == parseInt(id!);
   });
+  console.log("resの中身 ", res);
 
 //toggle button
-const [ isFed, setIsFed] = useState("I'm hungry!!");
-const FeedBtn=()=>{
-    const hungry:boolean = false;
-    const fed = hungry == false ?  "I'm full!!" : " I'm hungry!!";
-    setIsFed(fed);
-
-    // const [ date, setDate] = useState('');
-    // const currentDate =  Date();
-    // setDate(currentDate);
-    // console.log(date);
-    //     return(
-    //     <>
-    //     <p>Last fed is: {date}</p>
-    //     </>
-    //     )
-};
+const [ feed, setFeed] = useState(false);
+function feedStatus(){
+    console.log("You clicked a button")
+    res.map(resData=>{
+        resData.lastFed = new Date();
+        setFeed(!resData);
+    });
+    localStorage.setItem('data', JSON.stringify(data));
+}
 
   //disable button
   const [once, setOnce] = useState(false);
 
   //hungry or full?
-  const hungry:boolean = false;
-  const eaten = hungry == false ? " I'm full " : " I'm hungry' ";
+  let hungry =  data.map(time =>{
+      let timeSinceLastFed = Math.floor((new Date().getTime()
+      - new Date(time.lastFed).getTime())/(1000*60*60));
+      console.log(timeSinceLastFed);
+
+      if(timeSinceLastFed>=4){
+          res.map( (item)=>{
+              item.isFed = false;
+              return(
+                  <>
+                  <h1>I haven't been fed for more than 4 hours</h1>
+                  <h1>{time.isFed}</h1>
+                  <h1>{item.isFed}</h1>
+                  </>
+              )
+          })
+      }else{
+          return <h1>I am full!!!!</h1>
+      }
+});
 
 //I got an error, so I added this '{res.toString()}' to solve it.
-//<button onClick={() =>Hungry} disabled={once} >{isFed}</button>
 return(
     <Fragment>
         <h2>Animal ID:  {id} </h2>
-        <button onClick={FeedBtn} disabled={once} >{isFed}</button>
-        
+        <button onClick={feedStatus} disabled={once} >I am hungry</button>
+        {!feed && <p>Not feed yet!!!</p>}
+        {feed && <p>Fed is done!</p>}
+
+        <div>Check more than 4hours here →→{hungry}</div>
         <ul>
             {res.map(item=>(
                 <li key={item.id}>
@@ -68,7 +95,8 @@ return(
                     <p>Year of birth: {item.yearOfBirth}</p>
                     <p>Long description: <br></br> {item.longDescription}</p>
                     <p>Medicine: {item.medicine}</p>
-                    <p>Hungry: {item.isFed} {eaten}</p>
+                    {!item.isFed && <p>I'm Hungry!</p>}
+            
                     <p>Lastfed: {item.lastFed}</p>
                 </li>
             ))}

@@ -10,7 +10,7 @@ export class Animal{
         public imageUrl:string,
         public medicine:string,
         public isFed:boolean,
-        public lastFed:string,
+        public lastFed:Date,
     )
     {}
 }
