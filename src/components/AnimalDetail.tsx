@@ -8,8 +8,6 @@ import { Link } from "react-router-dom";
 
 export function AnimalDetail() {
     const { id } = useParams();
-    //const [data, setData] = useState<Animal[]>([]);
-    const [ feed, setFeed] = useState(false);
 
 //filter by id
 //parseInt is convert a string integer to a numeric integer
@@ -23,6 +21,7 @@ let animal = data.find(idFromData => {
   if (animal == null) {
      return (<p>Not found</p>);
 }
+let isFedText = "";
 
  //disable button
  //const [once, setOnce] = useState(false);
@@ -41,12 +40,11 @@ function CheckHungry() {
                   </>
               )
       }else{
+        animal!.isFed = true;
           return <h1>I am full!!!!</h1>
       }
     return (<>{test}</>)
 }
-
-//let Hungry = { checkHungry };
 
 //feed status button
 function feedStatus(animal: Animal, data: Animal[]){
@@ -56,12 +54,11 @@ function feedStatus(animal: Animal, data: Animal[]){
     localStorage.setItem('data', JSON.stringify(data));
 }
 
+isFedText = animal.isFed ? "I'm full" : "I'm hungry";
 //I got an error, so I added this '{res.toString()}' to solve it.
 return(
     <Fragment>
-        <button onClick={()=>feedStatus(animal!, data)} >I am hungry</button>
-        {!feed && <p>Not feed yet!!!</p>}
-        {feed && <p>Fed is done!</p>}
+        <button onClick={()=>feedStatus(animal!, data)}>Feed me please</button>
 
         <div>Check more than 4hours here →→{CheckHungry}</div>
         
@@ -72,6 +69,7 @@ return(
              <p>Year of birth: {animal.yearOfBirth}</p>
              <p>Long description: <br></br> {animal.longDescription}</p>
              <p>Medicine: {animal.medicine}</p>
+             <p>{isFedText}</p>
              {!animal.isFed && <p>I'm Hungry!</p>}
              <p>Lastfed: {animal.lastFed}</p>
             </li>
