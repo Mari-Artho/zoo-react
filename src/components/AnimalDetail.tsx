@@ -5,18 +5,17 @@ import axios from "axios";
 import { Animal } from "../models/Animal";
 import './AnimalDetail.css';
 import { Link } from "react-router-dom";
-import { setDefaultResultOrder } from "dns";
 
 const AnimalDetail = () =>{
     const { id } = useParams();
     const [ animalId, setAnimalId] = useState(0);
-
     //fetch data
     const [data, setData] = useState<Animal[]>([]);
-    //localstorage
-    let getData = localStorage.getItem('data');
+    const [ feed, setFeed] = useState(false);
 
     useEffect(()=>{
+    //localstorage
+    let getData = localStorage.getItem('data');
     const fetchData = async()=>{
         const result = await axios(
         'https://animals.azurewebsites.net/api/animals'
@@ -25,14 +24,7 @@ const AnimalDetail = () =>{
         localStorage.setItem('data', JSON.stringify(result));
     }; 
     fetchData();
-}, []); //AnimalDetail last
-
-//setId & useeffect
-const setId =()=>{
-    if(id)
-    setAnimalId(+id);
-};
-useEffect(setId, []);
+}, []); 
 
 //filter by id
 //parseInt is convert a string integer to a numeric integer
@@ -42,8 +34,10 @@ const res = data.filter(animalId => {
   });
   console.log("resの中身 ", res);
 
+ //disable button
+ const [once, setOnce] = useState(false);
+
 //toggle button
-const [ feed, setFeed] = useState(false);
 function feedStatus(){
     console.log("You clicked a button")
     res.map(resData=>{
@@ -52,9 +46,6 @@ function feedStatus(){
     });
     localStorage.setItem('data', JSON.stringify(data));
 }
-
-  //disable button
-  const [once, setOnce] = useState(false);
 
   //hungry or full?
   let hungry =  data.map(time =>{
