@@ -60,7 +60,7 @@ return(
     <Fragment>
         <button onClick={()=>feedStatus(animal!, data)}>Feed me please</button>
 
-        <div>Check more than 4hours here →→{CheckHungry}</div>
+        <div>Check more than 4hours here →→{CheckHungry()}</div>
         
          <ul>
            <li key={animal.id}>
