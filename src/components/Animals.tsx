@@ -12,7 +12,7 @@ export function Animals(){
 
     let getData = ()=>{
         let animalData = localStorage.getItem('data');
-        if(animalData===undefined){
+        if(animalData===null){
         axios
         .get<IAnimal[]>('https://animals.azurewebsites.net/api/animals')
         .then((response)=>{
