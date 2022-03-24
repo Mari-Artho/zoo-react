@@ -30,10 +30,10 @@ export function AnimalDetail() {
 //(id!) tells TypeScript that even though something looks like it could be null, it can trust you that it's not.
 let dataJSON = localStorage.getItem("data");
 let data: Animal[] = JSON.parse(dataJSON!);
-let animalId = data.filter(idFromData => {
+let animal = data.filter(idFromData => {
     return idFromData.id == parseInt(id!);
   });
-  console.log("resの中身 ", animalId);
+  console.log("resの中身 ", animal);
 
  //disable button
  const [once, setOnce] = useState(false);
@@ -53,7 +53,7 @@ let animalId = data.filter(idFromData => {
       console.log(timeSinceLastFed);
 
       let test = ()=>{if(timeSinceLastFed>=4){
-        animalId.map((item)=>{
+        animal.map((item)=>{
               item.isFed = false;
               return(
                   <>
@@ -72,7 +72,7 @@ let animalId = data.filter(idFromData => {
 //toggle button
 function feedStatus(){
     console.log("You clicked a button")
-    animalId.map(resData=>{
+    animal.map(resData=>{
         resData.lastFed = new Date();
         setFeed(!resData);
     });
@@ -90,7 +90,7 @@ return(
         <div>Check more than 4hours here →→{Hungry}</div>
         {Hungry}
         <ul>
-            {animalId.map(item=>(
+            {animal.map(item=>(
                 <li key={item.id}>
                     <h1>Name: {item.name}</h1>
                     <img src={item.imageUrl} width="140px" height='100px' />
