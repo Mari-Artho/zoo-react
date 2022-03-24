@@ -6,11 +6,13 @@ import axios from "axios";
 import { BrowserRouter as Router, Route, Link, useParams} from "react-router-dom";
 
 export function Animals(){
-    const [animals, setAnimals] = useState<Animal[]>([]);
+    let [animals, setAnimals] = useState<Animal[]>([]);
     //Set a ID
-    const {id} = useParams();
+    let {id} = useParams();
 
-    const getData = ()=>{
+    let getData = ()=>{
+        let animalData = localStorage.getItem('data');
+        if(animalData===undefined){
         axios
         .get<IAnimal[]>('https://animals.azurewebsites.net/api/animals')
         .then((response)=>{
@@ -26,15 +28,20 @@ export function Animals(){
                     animal.medicine, 
                     animal.isFed, 
                     animal.lastFed);
-            }); setAnimals(animalsFromApi);
+            }); 
+            setAnimals(animalsFromApi);
+            localStorage.setItem('data', JSON.stringify(animalsFromApi));
         });
-    }//getData end
+    } else {//getData end
+        setAnimals(JSON.parse(animalData!));
+    }
+}//getData
 
     //useEffect
     useEffect(getData, []);
 
-    const ListItems = ()=>{
-        const items = animals.map((item:IAnimal)=>
+    let ListItems = ()=>{
+        let items = animals.map((item:IAnimal)=>
         <>
         <div style={{backgroundColor:'#cee4b4'}}>
         <Link to={`AnimalDetail/${item.id}`}>
@@ -58,4 +65,4 @@ export function Animals(){
             </div>           
         </Fragment>
     )
-}
+}//Animals last

@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { NotFound } from './components/NotFound';
-import AnimalDetail from './components/AnimalDetail';
+import { AnimalDetail} from './components/AnimalDetail';
 
 ReactDOM.render(
   <React.StrictMode>

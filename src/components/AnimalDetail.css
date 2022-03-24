@@ -1,0 +1,23 @@
+h2{
+    margin-left: 30px;
+}
+
+li{
+    list-style: none;
+}
+
+button{
+    width: 200px;
+    height: 50px;
+    margin-left: 30px;
+    font-size: 1.5rem;
+    background-color: rgb(243, 243, 157);
+}
+
+.backBtn{
+    color: white;
+    width: 200px;
+    height: 40px;
+    background-color: rgb(180, 106, 119);
+    margin-bottom: 30px;
+}
