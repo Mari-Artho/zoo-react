@@ -37,17 +37,7 @@ const res = data.filter(animalId => {
  //disable button
  const [once, setOnce] = useState(false);
 
-//toggle button
-function feedStatus(){
-    console.log("You clicked a button")
-    res.map(resData=>{
-        resData.lastFed = new Date();
-        setFeed(!resData);
-    });
-    localStorage.setItem('data', JSON.stringify(data));
-}
-
-  //hungry or full?
+//hungry or full?
   let hungry =  data.map(time =>{
       let timeSinceLastFed = Math.floor((new Date().getTime()
       - new Date(time.lastFed).getTime())/(1000*60*60));
@@ -68,6 +58,16 @@ function feedStatus(){
           return <h1>I am full!!!!</h1>
       }
 });
+
+//toggle button
+function feedStatus(){
+    console.log("You clicked a button")
+    res.map(resData=>{
+        resData.lastFed = new Date();
+        setFeed(!resData);
+    });
+    localStorage.setItem('data', JSON.stringify(data));
+}
 
 //I got an error, so I added this '{res.toString()}' to solve it.
 return(
