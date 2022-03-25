@@ -32,7 +32,7 @@ export function Animals(){
             setAnimals(animalsFromApi);
             localStorage.setItem('data', JSON.stringify(animalsFromApi));
         });
-    } else {//getData end
+    } else {
         setAnimals(JSON.parse(animalData!));
     }
 }//getData

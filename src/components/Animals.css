@@ -27,3 +27,7 @@ a{
 h1, h2{
     color: #7d9263;
 }
+
+span{
+    color:red;
+}
