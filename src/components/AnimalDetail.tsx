@@ -26,9 +26,9 @@ let animal =  data.find(idFromData => {
   };
 
 //hungry or full?
+const now = new Date().getTime();
 function CheckHungry() {
-      let timeSinceLastFed = Math.floor((new Date().getTime()
-      - new Date(animal!.lastFed).getTime())/(1000*60*60));
+      let timeSinceLastFed = Math.floor((now - new Date(animal!.lastFed).getTime())/(1000*60*60));
 
       if(timeSinceLastFed>=4){
         animal!.isFed = false;
@@ -43,7 +43,6 @@ function CheckHungry() {
              else{animal!.isFed = true;
                     return <h1>I am full! It's been <span>{timeSinceLastFed}</span>  hours since I got food last time.</h1>
                 }
-             //return (<>{test}</>)
 }//Checkhungry
 
 //feed status button

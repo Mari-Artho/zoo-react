@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Route, Link, useParams} from "react-router-dom
 
 export function Animals(){
     let [animals, setAnimals] = useState<Animal[]>([]);
-    //Set a ID
     let {id} = useParams();
 
     let getData = ()=>{
@@ -40,6 +39,9 @@ export function Animals(){
     //useEffect
     useEffect(getData, []);
 
+    //Get the current time
+    const now = new Date().getTime();
+
     let ListItems = ()=>{
         let items = animals.map((item:IAnimal)=>
         <>
@@ -48,6 +50,7 @@ export function Animals(){
         <p className="container-name" key={item.id}>{item.name}</p>
         <p className="container-img"><img src={item.imageUrl} width="120px" height='80px'/></p>
         <p className="container-short">{item.shortDescription}</p>
+        <p>{Math.floor((now - new Date(item.lastFed).getTime())/(1000*60*60)) >=4 ? "No food more than 4 hours" : "I'm full"}</p>
         </Link>
         </div>
         </>);
@@ -58,7 +61,7 @@ export function Animals(){
 
     return (
         <Fragment>
-            <h1>🐘WELCOME TO ZOO!?🐻</h1>
+            <h1>🐻WELCOME TO ZOO!?🐘</h1>
             <h2>We have {animals.length} animals!</h2>
             <div className="container">
             {ListItems()}
