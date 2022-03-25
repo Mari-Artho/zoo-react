@@ -6,6 +6,7 @@ import './AnimalDetail.css';
 
 export function AnimalDetail() {
     const { id } = useParams();
+    let [ isFed, setIsFed ] = useState(Boolean);
 
 //filter by id
 //parseInt is convert a string integer to a numeric integer
@@ -15,6 +16,11 @@ let data: Animal[] = JSON.parse(dataJSON!);
 let animal =  data.find(idFromData => {
     return idFromData.id == parseInt(id!);
   });
+  useEffect(() => {
+    setIsFed(animal!.isFed);
+  }, [id]);
+  // below this code, the calls are conditional, so calls to useEffect
+  // or to set the state are no longer permitted
   if (animal == null) {
      return (<p>Not found</p>);
   };
@@ -43,6 +49,7 @@ function feedStatus(animal: Animal, data: Animal[]){
     animal.lastFed = new Date();
     animal.isFed = true;
     localStorage.setItem('data', JSON.stringify(data));
+    setIsFed(true);
 }
 let isFedText = "";
 isFedText = animal.isFed ? "I'm full" : "I'm hungry";
@@ -50,7 +57,7 @@ isFedText = animal.isFed ? "I'm full" : "I'm hungry";
 return(
     <Fragment>
         <div className="hungry">{CheckHungry()}</div>
-        <button disabled={animal.isFed} onClick={()=>feedStatus(animal!, data)}>{isFedText}</button>
+        <button disabled={isFed} onClick={()=>feedStatus(animal!, data)}>{isFedText}</button>
         <ul>
            <li key={animal.id}>
              <h1>Name: {animal.name}</h1>
