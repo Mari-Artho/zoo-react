@@ -6,7 +6,6 @@ import './AnimalDetail.css';
 
 export function AnimalDetail() {
     const { id } = useParams();
-    const [disable, setDisable] = useState(false);
 
 //filter by id
 //parseInt is convert a string integer to a numeric integer
@@ -41,7 +40,6 @@ function CheckHungry() {
 
 //feed status button
 function feedStatus(animal: Animal, data: Animal[]){
-    setDisable(true);
     animal.lastFed = new Date();
     animal.isFed = true;
     localStorage.setItem('data', JSON.stringify(data));
@@ -52,7 +50,7 @@ isFedText = animal.isFed ? "I'm full" : "I'm hungry";
 return(
     <Fragment>
         <div className="hungry">{CheckHungry()}</div>
-        <button disabled={disable} onClick={()=>feedStatus(animal!, data)}>{isFedText}</button>
+        <button disabled={animal.isFed} onClick={()=>feedStatus(animal!, data)}>{isFedText}</button>
         <ul>
            <li key={animal.id}>
              <h1>Name: {animal.name}</h1>
