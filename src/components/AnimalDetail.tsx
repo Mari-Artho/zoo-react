@@ -37,6 +37,8 @@ function CheckHungry() {
               )
              }//if
              else if(timeSinceLastFed >=3){
+                animal!.isFed = false;
+                return(<h1>I am full but if you have food I'll eat it.  It's been <span>{timeSinceLastFed}</span>  hours since I got food last time.</h1>)
              }
              else{animal!.isFed = true;
                     return <h1>I am full! It's been <span>{timeSinceLastFed}</span>  hours since I got food last time.</h1>
