@@ -53,11 +53,11 @@ export function Animals(){
         <p>{Math.floor((now - new Date(item.lastFed).getTime())/(1000*60*60)) >=4 ? "No food more than 4 hours" : "I'm full"}</p>
         </Link>
         </div>
-        </>);
+        </>)
         return(
             <>{items}</>
         )
-    }
+    };
 
     return (
         <Fragment>

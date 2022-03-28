@@ -1,6 +1,5 @@
 import { Fragment, useEffect,useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import axios from "axios";
 import { Animal } from "../models/Animal";
 import './AnimalDetail.css';
 
@@ -27,10 +26,10 @@ let animal =  data.find(idFromData => {
 
 //hungry or full?
 const now = new Date().getTime();
-function CheckHungry() {
+function checkHungry() {
       let timeSinceLastFed = Math.floor((now - new Date(animal!.lastFed).getTime())/(1000*60*60));
 
-      if(timeSinceLastFed>=4){
+      if(timeSinceLastFed >= 4){
         animal!.isFed = false;
                 return(
                   <h1>I haven't been fed for more than 4 hours</h1>
@@ -43,7 +42,7 @@ function CheckHungry() {
              else{animal!.isFed = true;
                     return <h1>I am full! It's been <span>{timeSinceLastFed}</span>  hours since I got food last time.</h1>
                 }
-}//Checkhungry
+}//checkhungry
 
 //feed status button
 function feedStatus(animal: Animal, data: Animal[]){
@@ -52,12 +51,15 @@ function feedStatus(animal: Animal, data: Animal[]){
     localStorage.setItem('data', JSON.stringify(data));
     setIsFed(true);
 }
+
+//to change the message
+animal.isFed = (Math.floor((now - new Date(animal!.lastFed).getTime())/(1000*60*60)) < 4);
 let isFedText = "";
 isFedText = animal.isFed ? "I'm full" : "I'm hungry";
 
 return(
     <Fragment>
-        <div className="hungry">{CheckHungry()}</div>
+        <div className="hungry">{checkHungry()}</div>
         <button disabled={isFed} onClick={()=>feedStatus(animal!, data)}>{isFedText}</button>
         <ul>
            <li key={animal.id}>
