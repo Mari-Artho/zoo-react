@@ -62,7 +62,7 @@ export function Animals(){
     return (
         <Fragment>
             <h1>🐻WELCOME TO ZOO!?🐘</h1>
-            <h2>We have {animals.length} animals!</h2>
+            <h2>There are {animals.length} animals in this zoo!</h2>
             <div className="container">
             {ListItems()}
             </div>           
