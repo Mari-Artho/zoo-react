@@ -13,11 +13,12 @@ export function AnimalDetail() {
 let dataJSON = localStorage.getItem("data");
 let data: Animal[] = JSON.parse(dataJSON!);
 let animal =  data.find(idFromData => {
-    return idFromData.id == parseInt(id!);
+    return idFromData.id === parseInt(id!);
   });
-  useEffect(() => {
-    setIsFed(animal!.isFed);
-  }, [id]);
+  // useEffect(() => {
+  //   setIsFed(animal!.isFed);
+  // }, [id]);
+
   // below this code, the calls are conditional, so calls to useEffect
   // or to set the state are no longer permitted
   if (animal == null) {
@@ -64,7 +65,7 @@ return(
         <ul>
            <li key={animal.id}>
              <h1>Name: {animal.name}</h1>
-             <img src={animal.imageUrl} width="140px" height='100px' />
+             <img src={animal.imageUrl} width="140px" height='100px' alt="Aminal's picture" />
              <p>Year of birth: {animal.yearOfBirth}</p>
              <p>Long description: <br></br> {animal.longDescription}</p>
              <p>Medicine: {animal.medicine}</p>
