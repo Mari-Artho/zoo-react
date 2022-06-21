@@ -47,7 +47,7 @@ export function Animals(){
         <div style={{backgroundColor:'#cee4b4'}}>
         <Link to={`AnimalDetail/${item.id}`}>
         <p className="container-name" key={item.id}>{item.name}</p>
-        <p className="container-img"><img src={item.imageUrl} width="120px" height='80px'alt="Animal's picture"/></p>
+        <p className="container-img"><img src={item.imageUrl} width="120px" height='80px'alt="Animal"/></p>
         <p className="container-short">{item.shortDescription}</p>
         <p>{Math.floor((now - new Date(item.lastFed).getTime())/(1000*60*60)) >=4 ? "No food more than 4 hours" : "I'm full"}</p>
         </Link>

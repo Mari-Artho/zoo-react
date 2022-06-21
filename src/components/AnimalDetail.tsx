@@ -1,4 +1,5 @@
-import { Fragment, useEffect,useState } from "react";
+import { Fragment, useState } from "react";
+//import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Animal } from "../models/Animal";
 import './AnimalDetail.css';
@@ -65,7 +66,7 @@ return(
         <ul>
            <li key={animal.id}>
              <h1>Name: {animal.name}</h1>
-             <img src={animal.imageUrl} width="140px" height='100px' alt="Aminal's picture" />
+             <img src={animal.imageUrl} width="140px" height='100px' alt="Aminal" />
              <p>Year of birth: {animal.yearOfBirth}</p>
              <p>Long description: <br></br> {animal.longDescription}</p>
              <p>Medicine: {animal.medicine}</p>
