@@ -31,3 +31,15 @@ h1, h2{
 span{
     color:red;
 }
+
+/* 480px, smart phone */
+@media screen and (max-width: 480px) {
+    html {
+        margin: auto;
+    }
+    
+    .container{
+        grid-template-columns: 1fr;
+    }
+    
+}

@@ -60,12 +60,14 @@ export function Animals(){
 
     return (
         <Fragment>
+            <body>
             <h1>🐻WELCOME TO ZOO!?🐘</h1>
             <h2>There are {animals.length} animals in this zoo!</h2>
             <h2>Click on the animal picture to open the details page and feed the hungry animal</h2>
             <div className="container">
             {ListItems()}
-            </div>           
+            </div>   
+            </body>        
         </Fragment>
     )
 }//Animals last
