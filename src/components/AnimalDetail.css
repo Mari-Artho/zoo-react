@@ -16,8 +16,34 @@ button{
 
 .backBtn{
     color: white;
-    width: 200px;
+    font-size: medium;
+    width: 180px;
     height: 40px;
-    background-color: rgb(180, 106, 119);
+    background-color: rgb(237, 192, 200);
     margin-bottom: 30px;
+    margin-left: 40%;
+}
+
+/* 959px, tablet */
+@media screen and (max-width: 959px){
+    body {
+        text-align: center;
+        display:block;
+        
+    }
+    .backBtn {
+        margin-left: 0;
+    }
+}
+
+/* 480px, smart phone */
+@media screen and (max-width: 480px) {
+        body{
+            margin-right: 15px;
+        }
+
+        .longDescription{
+            
+            text-align:start;
+        }
 }

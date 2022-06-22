@@ -61,6 +61,7 @@ isFedText = animal.isFed ? "I'm full" : "I'm hungry";
 
 return(
     <Fragment>
+        <body>
         <div className="hungry">{checkHungry()}</div>
         <button disabled={isFed} onClick={()=>feedStatus(animal!, data)}>{isFedText}</button>
         <ul>
@@ -68,7 +69,8 @@ return(
              <h1>Name: {animal.name}</h1>
              <img src={animal.imageUrl} width="140px" height='100px' alt="Aminal" />
              <p>Year of birth: {animal.yearOfBirth}</p>
-             <p>Long description: <br></br> {animal.longDescription}</p>
+             <p>Long description: </p>
+             <p className="longDescription"> {animal.longDescription}</p>
              <p>Medicine: {animal.medicine}</p>
              <p>Food: {isFedText}</p>
              {!animal.isFed && <p>I'm Hungry!</p>}
@@ -76,7 +78,8 @@ return(
             </li>
         </ul>
         <br></br>
-        <button style={{marginLeft:"40%"}}><Link to={'/'}>Back to ZOO</Link></button>
+        <button className="backBtn"><Link to={'/'}>Back to ZOO</Link></button>
+        </body>
     </Fragment>
 );
 }//AnimalDetail last
