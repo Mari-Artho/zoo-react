@@ -1,4 +1,5 @@
-## Demo Link [zoo-react(https://zoo-react2.netlify.app/)]
+## Demo Link
+[zoo-react](https://zoo-react2.netlify.app/).
 
 
 # Getting Started with Create React App
